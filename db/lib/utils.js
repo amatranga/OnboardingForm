@@ -3,10 +3,10 @@ const knex = require('knex')(require('../../knexfile'));
 exports.rollbackMigrate = done => {
   knex.migrate.rollback()
     .then(() => {
-      return knex.migrate.latest()
+      return knex.migrate.latest();
     })
     .then(() => {
-      return knex.seed.run()
+      return knex.seed.run();
     })
     .then(() => {
       done();
