@@ -26,6 +26,7 @@ exports.seed = function(knex, Promise) {
     .then(profile => {
       return models.Auth.forge({
         password: 'examplePassword123',
+        type: 'local',
         user_id: profile.get('id')
       }).save();
     })
