@@ -12,11 +12,11 @@ const FormDiv = props => {
     return (
       <div className="form-group">
         <label htmlFor={props.name}>{props.label}</label>
-          <input type={props.type} className="form-control" id={props.name} minLength="10" name={props.name} onChange={props.handleChange} required />
-          <small className="form-text text-muted">{props.smallText}</small>
+        <input type={props.type} className="form-control" id={props.name} minLength="10" name={props.name} onChange={props.handleChange} required />
+        <small className="form-text text-muted">{props.smallText}</small>
       </div>
     );
   }
-}
+};
 
 export default FormDiv;
