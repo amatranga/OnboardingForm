@@ -14,6 +14,7 @@ exports.up = function(knex, Promise) {
     }),
     knex.schema.createTableIfNotExists('auths', function(table) {
       table.increments('id').unsigned().primary();
+      table.string('type', 5).nullable();
       table.string('password', 100).nullable();
       table.string('salt', 100).nullable();
       table.integer('user_id').references('id').inTable('users').onDelete('CASCADE');
