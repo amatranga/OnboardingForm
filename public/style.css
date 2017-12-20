@@ -1,0 +1,6 @@
+#app {
+  background: url('assets/gradient.jpg') repeat-y center;
+  background-size: auto;
+  height: 35em;
+  max-width: 100%;
+}
