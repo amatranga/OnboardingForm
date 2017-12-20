@@ -11,7 +11,7 @@ const UserContact = props => {
         name="street"
         type="text"
       />
-      <FormDiv 
+      <FormDiv
         handleChange={props.handleChange}
         label="City"
         name="city"
@@ -32,6 +32,6 @@ const UserContact = props => {
       <SaveButton />
     </form>
   );
-}
+};
 
 export default UserContact;

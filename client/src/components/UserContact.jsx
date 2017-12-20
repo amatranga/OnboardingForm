@@ -26,6 +26,6 @@ const UserContact = props => {
       <SaveButton />
     </form>
   );
-}
+};
 
 export default UserContact;

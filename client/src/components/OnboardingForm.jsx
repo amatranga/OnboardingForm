@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LandingPage from './LandingPage'
+import LandingPage from './LandingPage';
 import UserName from './UserName';
 import UserContact from './UserContact';
 import UserAddress from './UserAddress';
@@ -37,36 +37,36 @@ class OnboardingForm extends React.Component {
   }
 
   render() {
-   const path = this.props.location.pathname;
-   if (path === '/') {
-     return (
-       <LandingPage next="/username" />
-     );
-   }
-   if (path === '/username') {
-     return (
-      <UserName
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        next="/usercontact" />
-     );
-   }
-   if (path === '/usercontact') {
-     return (
-      <UserContact
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        next="useraddress" />
-     );
-   }
-   if (path === '/userAddress') {
-     return (
-      <UserAddress
-        handleChange={this.handleChange}
-        handleSubmit={this.handleSubmit}
-        next="/" />
-     );
-   }
+    const path = this.props.location.pathname;
+    if (path === '/') {
+      return (
+        <LandingPage next="/username" />
+      );
+    }
+    if (path === '/username') {
+      return (
+        <UserName
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          next="/usercontact" />
+      );
+    }
+    if (path === '/usercontact') {
+      return (
+        <UserContact
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          next="useraddress" />
+      );
+    }
+    if (path === '/useraddress') {
+      return (
+        <UserAddress
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          next="/" />
+      );
+    }
   }
 }
 
