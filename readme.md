@@ -1,5 +1,17 @@
 # EKA TECHNICAL CHALLENGE - 2
 
+## Starting
+
+Ensure that Postgres is running.
+
+Rename .env.example to .env and add in your local variables
+
+run npm build
+
+run npm start
+
+The application will run at localhost:3000 by default.
+
 
 ## INTRODUCTION
 For this technical challenge, we would like you to provide an interface for a user to input information. This workflow is commonly referred to as an onboarding process, and involves the user inputting their information into a series of forms.
