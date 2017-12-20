@@ -8,7 +8,9 @@ const LandingPage = (props) => {
         <h2>Welcome to our Onboarding Process!</h2>
       </div>
       <div className="col-12 text-center">
-        <Link to={props.next}>Click here to begin</Link>
+        <button className="btn btn-outline-dark">
+          <Link style={{ 'textDecoration': 'none', 'color': 'inherit' }} to={props.next}>Click here to begin</Link>
+        </button>
       </div>
     </React.Fragment>
   );

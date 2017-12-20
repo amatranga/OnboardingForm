@@ -3,33 +3,44 @@ import { Link, Redirect } from 'react-router-dom';
 import FormDiv from './FormDiv';
 import SaveButton from './SaveButton';
 
-const UserName = props => {
-  return (
-    <form onSubmit={props.handleSubmit}>
-      <FormDiv
-        handleChange={props.handleChange}
-        label="UserName"
-        name="username"
-        type="text"
-      />
+class UserName extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-      <FormDiv
-        handleChange={props.handleChange}
-        label="Email Address"
-        name="email"
-        type="email"
-      />
+  componentWillUnmount() {
+    this.props.redirect();
+  }
+  
+  render() {
+    return (
+      <form onSubmit={this.props.handleSubmit}>
+        <FormDiv
+          handleChange={this.props.handleChange}
+          label="UserName"
+          name="username"
+          type="text"
+        />
 
-      <FormDiv
-        handleChange={props.handleChange}
-        label="Password"
-        name="password"
-        smallText="Password must contain at least 10 characters"
-      />
+        <FormDiv
+          handleChange={this.props.handleChange}
+          label="Email Address"
+          name="email"
+          type="email"
+        />
 
-      <SaveButton />
-    </form>
-  );
-};
+        <FormDiv
+          handleChange={this.props.handleChange}
+          label="Password"
+          name="password"
+          type="password"
+          smallText="Password must contain at least 10 characters"
+        />
+
+        <SaveButton next={this.props.next} />
+      </form>
+    );
+  }
+}
 
 export default UserName;

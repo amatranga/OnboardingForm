@@ -10,7 +10,7 @@ import OnboardingForm from './OnboardingForm';
 const AllRoutes = () => {
   return (
     <div className="container-fluid">
-      <div className="row justify-content-center">
+      <div className="row justify-content-center main">
         <Router>
           <Switch>
             <Route path="*" component={OnboardingForm} />

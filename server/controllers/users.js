@@ -1,7 +1,8 @@
 const models = require('../../db/models');
 
 module.exports.update = (req, res) => {
-  models.User.where({ email: req.params.email }).fetch()
+  console.log(req, 'req in update');
+  models.User.where({ email: req.body.email }).fetch()
     .then(profile => {
       if (!profile) {
         throw profile;

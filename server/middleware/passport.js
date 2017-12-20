@@ -6,16 +6,16 @@ passport.serializeUser((profile, done) => {
   done(null, profile.id);
 });
 
-passport.deserializeUser((profile, done) => {
-  return models.User.where({ id }).fetch()
+passport.deserializeUser((id, done) => {
+  return models.Profile.where({ id }).fetch()
     .then(profile => {
       if (!profile) {
         throw profile;
       }
       done(null, profile.serialize());
     })
-    .error(err => {
-      done(err, null);
+    .error(error => {
+      done(error, null);
     })
     .catch(() => {
       done(null, null, { message: 'No user found' });
@@ -27,67 +27,37 @@ passport.use('local-signup', new LocalStrategy({
   passwordField: 'password',
   passReqToCallback: true
 },
-(req, remail, password, done) => {
+(req, email, password, done) => {
+  // check to see if there is an account with this id
   return models.User.where({ email }).fetch()
     .then(profile => {
+      // create a new profile if a profile does not exist
       if (!profile) {
-        return models.User.forge({ first_name: req.body.first_name, email: email }).save();
+        return models.User.forge({ first: req.body.first, email: email }).save();
       }
+      // throw if any auth account already exists
       if (profile) {
         throw profile;
       }
       return profile;
     })
     .tap(profile => {
+      // create a new local auth account with the user's profile id
       return models.Auth.forge({
         password,
         type: 'local',
-        user_id: profile.get('id')
+        profile_id: profile.get('id')
       }).save();
     })
     .then(profile => {
+      // serialize profile for session
       done(null, profile.serialize());
     })
     .error(error => {
       done(error, null);
     })
     .catch(() => {
-      done(null, false, req.flash('signupMessage', 'An account with this email already exists'));
-    });
-}));
-
-passport.use('local-login', new LocalStrategy({
-  usernameField: 'email',
-  passwordField: 'password',
-  passReqToCallback: true
-},
-(req, email, password, done) => {
-  return models.User.where({ email }).fetch({
-    withRelated: [{
-      auths: query => query.where({ type: 'local' })
-    }]
-  })
-    .then(profile => {
-      if (!profile || !profile.related('auths').at(0)) {
-        throw profile;
-      }
-
-      return Promise.all([profile, profile.related('auths').at(0).comparePassword(password)]);
-    })
-    .then(([profile, match]) => {
-      if (!match) {
-        throw profile;
-      }
-      return profile;
-    })
-    .then(profile => {
-      done(null, profile.serialize());
-    })
-    .error( err => {
-      done(err, null);
-    })
-    .catch(() => {
-      done(null, null, req.flash('loginMessage', 'Incorrect username or password'));
+      done(null, false, req.flash('signupMessage', 'An account with this email address already exists.'));
     });
 }));
 
