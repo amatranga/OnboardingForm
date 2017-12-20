@@ -7,4 +7,4 @@ const User = db.Model.extend({
   }
 });
 
-module.exports = db.Model('User', User);
+module.exports = db.model('User', User);
